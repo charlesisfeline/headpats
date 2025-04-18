@@ -1,6 +1,7 @@
 package dev.enjarai.headpats;
 
 import dev.enjarai.headpats.config.ModConfig;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 import net.minecraft.client.render.entity.state.EntityRenderState;
@@ -74,12 +75,13 @@ public class PetRendering {
 
     public static @Nullable Float getCameraRoll(PlayerEntity player, float tickDelta) {
         var petting = Headpats.PETTING_COMPONENT.get(player);
+        var finalFirstPersonSwayStrength = ModConfig.INSTANCE.firstPersonSwayStrength * MinecraftClient.getInstance().options.getDistortionEffectScale().getValue();
 
-        if (petting.pettedMultiplier > 0 && ModConfig.INSTANCE.firstPersonSwayStrength > 0) {
+        if (petting.pettedMultiplier > 0 && finalFirstPersonSwayStrength > 0) {
             var petTime = MathHelper.lerp(tickDelta, (float) petting.prevPettedTicks, (float) petting.pettedTicks);
             var multiplier = MathHelper.lerp(tickDelta, petting.prevPettedMultiplier, petting.pettedMultiplier);
 
-            return -MathHelper.sin(petTime * 0.4f) * multiplier * 0.1f * ModConfig.INSTANCE.firstPersonSwayStrength;
+            return -MathHelper.sin(petTime * 0.4f) * multiplier * 0.1f * (float) finalFirstPersonSwayStrength;
         }
 
         return null;
