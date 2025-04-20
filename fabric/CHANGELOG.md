@@ -1,1 +1,1 @@
-- Fixed mod breaking terribly on servers.
+- Changed the first-person sway effect to respect vanilla accessibility options.
