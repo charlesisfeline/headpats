@@ -1,1 +1,1 @@
-- Changed the first-person sway effect to respect vanilla accessibility options.
+- Updated to 1.21.6-7.
