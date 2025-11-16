@@ -74,7 +74,7 @@ public class PettingComponent implements AutoSyncedComponent, ServerTickingCompo
 
     @Override
     public void serverTick() {
-        if (petting != null && player.getWorld().getPlayerByUuid(petting) == null) {
+        if (petting != null && player.getEntityWorld().getPlayerByUuid(petting) == null) {
             stopPetting();
         }
     }
@@ -99,7 +99,7 @@ public class PettingComponent implements AutoSyncedComponent, ServerTickingCompo
         prevPettedMultiplier = pettedMultiplier;
         if (isBeingPet()) {
             if (pettedTicks % 40 == 0 && ModConfig.INSTANCE.pettedPlayersPurr) {
-                player.getWorld().playSoundFromEntityClient(player, SoundEvents.ENTITY_CAT_PURR,
+                player.getEntityWorld().playSoundFromEntityClient(player, SoundEvents.ENTITY_CAT_PURR,
                         SoundCategory.PLAYERS, 1f, player.getSoundPitch());
             }
 
@@ -131,7 +131,7 @@ public class PettingComponent implements AutoSyncedComponent, ServerTickingCompo
             if (server != null) {
                 other = server.getPlayerManager().getPlayer(petting);
             } else {
-                other = player.getWorld().getPlayerByUuid(petting);
+                other = player.getEntityWorld().getPlayerByUuid(petting);
             }
 
             if (other != null) {

@@ -33,7 +33,7 @@ public final class Headpats extends JavaPlugin implements Listener {
             var buf = ByteStreams.newDataInput(message);
             var petted = buf.readInt();
 
-            ServerLevel world = ((CraftWorld) player.getWorld()).getHandle();
+            ServerLevel world = ((CraftWorld) player.getEntityWorld()).getHandle();
             net.minecraft.world.entity.player.Player pettedPlayer = null;
             if (petted != -1) {
                 var pettedEntity = world.getEntity(petted);
