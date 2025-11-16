@@ -1,3 +1,9 @@
 plugins {
     id 'fabric-loom' version '1.12' apply false
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
